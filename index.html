@@ -450,25 +450,101 @@
             opacity: 0.9;
         }
 
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
+            .nav-container {
+                padding: 1rem;
             }
 
-            .hero-image {
-                margin: 0 auto;
+            .menu-toggle {
+                display: block;
             }
 
             .nav-links {
-                flex-wrap: wrap;
-                gap: 1rem;
-                justify-content: center;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: var(--color-surface);
+                flex-direction: column;
+                gap: 0;
+                padding: 1rem 0;
+                box-shadow: var(--shadow-md);
+                display: none;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .hero-image {
+                width: 150px;
+                height: 150px;
+                margin: 0 auto;
+                font-size: 3rem;
             }
 
             .hero-content h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
+            }
+
+            .hero-content .title {
+                font-size: 1rem;
+            }
+
+            .hero-content .institution {
+                font-size: 0.95rem;
+            }
+
+            .expertise-tags {
+                justify-content: center;
+            }
+
+            .tag {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .download-section {
+                justify-content: center;
+            }
+
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.6rem 1.2rem;
             }
 
             h2 {
@@ -477,6 +553,14 @@
 
             .container {
                 padding: 2rem 1rem;
+            }
+
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -503,7 +587,8 @@
     <nav>
         <div class="nav-container">
             <div class="logo">Dr. Dionisio S. Bucao</div>
-            <ul class="nav-links">
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#research">Research</a></li>
@@ -961,11 +1046,13 @@
 
             <h3>Quick Save Contact</h3>
             <div class="info-box" style="text-align: center;">
-                <p style="margin-bottom: 1rem;">Scan this QR code with your smartphone to instantly save contact information</p>
+                <p style="margin-bottom: 1rem; color: var(--color-text-light);">Scan or click the QR code to save contact information</p>
                 <a href="public/drbucaovc.vcf" download="Dr_Dionisio_Bucao.vcf">
-                    <img id="qrcode" src="public/qrcode.png" alt="vCard QR Code" style="margin: 0 auto; display: block; max-width: 256px; border: 2px solid var(--color-border); border-radius: 8px; cursor: pointer;">
+                    <img id="qrcode" src="public/dsbucaovcdl.png" alt="vCard QR Code - Click to Download" style="margin: 0 auto; display: block; max-width: 256px; border: 2px solid var(--color-border); border-radius: 8px; cursor: pointer;">
                 </a>
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--color-text-light);">Scan with camera or tap to download • Compatible with iOS and Android devices</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--color-text-light);">
+                    <strong>Click to save</strong> • Compatible with iPhone and Android
+                </p>
             </div>
 
             <div class="info-box">
@@ -987,6 +1074,23 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
