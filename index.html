@@ -517,7 +517,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-container">
-            <div class="hero-image">🎓</div>
+            <img src="public/drbucao.jpg" alt="Dr. Dionisio S. Bucao" class="hero-image" style="object-fit: cover;">
             <div class="hero-content">
                 <h1>Dr. Dionisio Salbado Bucao</h1>
                 <div class="title">Director, Research Directorate</div>
@@ -530,10 +530,10 @@
                     <span class="tag">Technology Transfer</span>
                 </div>
                 <div class="download-section" style="margin-top: 2rem;">
-                    <a href="#" class="btn" onclick="alert('public/dsbucaocv.pdf'); return false;">
+                    <a href="public/dsbucaocv.pdf" class="btn" download="Dr_Dionisio_Bucao_CV.pdf">
                         📄 Download Full CV (PDF)
                     </a>
-                    <a href="#" class="btn btn-secondary" onclick="generateVCard(); return false;">
+                    <a href="public/drbucaovc.vcf" class="btn btn-secondary" download="Dr_Dionisio_Bucao.vcf">
                         📇 Download vCard
                     </a>
                 </div>
@@ -951,10 +951,10 @@
 
             <h3>Downloadable Resources</h3>
             <div class="download-section">
-                <a href="#" class="btn" onclick="alert('public/dsbucaocv.pdf'); return false;">
+                <a href="public/dsbucaocv.pdf" class="btn" download="Dr_Dionisio_Bucao_CV.pdf">
                     📄 Download Full CV (PDF)
                 </a>
-                <a href="#" class="btn btn-secondary" onclick="generateVCard(); return false;">
+                <a href="public/drbucaovc.vcf" class="btn btn-secondary" download="Dr_Dionisio_Bucao.vcf">
                     📇 Download vCard
                 </a>
             </div>
@@ -962,8 +962,10 @@
             <h3>Quick Save Contact</h3>
             <div class="info-box" style="text-align: center;">
                 <p style="margin-bottom: 1rem;">Scan this QR code with your smartphone to instantly save contact information</p>
-                <img id="qrcode" src="https://via.placeholder.com/256x256/1a5490/ffffff?text=QR+Code+Here" alt="vCard QR Code" style="margin: 0 auto; display: block; max-width: 256px; border: 2px solid var(--color-border); border-radius: 8px;">
-                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--color-text-light);">Compatible with iOS and Android devices</p>
+                <a href="public/drbucaovc.vcf" download="Dr_Dionisio_Bucao.vcf">
+                    <img id="qrcode" src="public/qrcode.png" alt="vCard QR Code" style="margin: 0 auto; display: block; max-width: 256px; border: 2px solid var(--color-border); border-radius: 8px; cursor: pointer;">
+                </a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--color-text-light);">Scan with camera or tap to download • Compatible with iOS and Android devices</p>
             </div>
 
             <div class="info-box">
